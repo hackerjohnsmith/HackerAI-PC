@@ -13,7 +13,7 @@ HackerAI-PC 是 **HackerAI 模型家族成员**，由开发者 HackerJohnSmith �
 
 
 ## 三、技术基础
-- **基础模型**：基于 **DeepSeek-R1:14B-Qwen-Distill-Q4_K_M** 开发，继承基础模型的优质语义理解与生成能力。
+- **基础模型**：基于 **Qwen3:14B-Q4_K_M** 开发，继承基础模型的优质语义理解与生成能力。
 - **调校方式**：开发者 HackerJohnSmith 通过场景化参数调整、系统提示词优化，实现 PC 场景的专属适配。
 
 
@@ -31,18 +31,18 @@ HackerAI-PC 是 **HackerAI 模型家族成员**，由开发者 HackerJohnSmith �
 已安装 Ollama 的 PC 端，通过以下命令即可拉取模型，拉取完成后可直接启动交互：
 ```bash
 # 拉取 HackerAI-PC 模型（版本 1.0.1）
-ollama pull HackerJohnSmith/HackerAI-PC:1.0.1
+ollama pull HackerJohnSmith/HackerAI-PC:1.1.0
 
 # 拉取完成后，直接启动模型交互
-ollama run HackerJohnSmith/HackerAI-PC:1.0.1
+ollama run HackerJohnSmith/HackerAI-PC:1.1.0
 ```
 
 ## 六、关键参数配置
 | 参数类型        | 参数名              | 配置值  | 作用说明                     |
 |-----------------|---------------------|---------|------------------------------|
 | 生成温度        | `temperature`       | 0.2     | 降低输出随机性，保证内容严谨 |
-| 上下文窗口      | `num_ctx`           | 131072  | 支持超长文本输入与理解       |
-| 最大生成长度    | `num_predict`       | 10240   | 满足长文档、长代码生成需求   |
+| 上下文窗口      | `num_ctx`           | 40960  | 支持长文本输入与理解       |
+| 最大生成长度    | `num_predict`       | 20480   | 满足长文档、长代码生成需求   |
 | 重复惩罚        | `repeat_penalty`    | 1.2     | 减少输出内容重复度           |
 | 频率惩罚        | `frequency_penalty` | 0.3     | 抑制低频冗余信息生成         |
 
@@ -55,19 +55,14 @@ ollama run HackerJohnSmith/HackerAI-PC:1.0.1
 
 ## 八、开源协议（三层协议并存）
 本模型需同时遵守上游基础模型与二次开发协议，完整协议链条如下：
-1. **底层协议（Qwen2）**  
-   - 协议类型：Apache License 2.0  
-   - 版权归属：Copyright © 2023 Alibaba Cloud  
-   - 核心要求：保留原始版权声明与协议文本，衍生作品需标注技术溯源；  
-   - 官方协议文本：[https://github.com/QwenLM/Qwen/blob/main/LICENSE](https://github.com/QwenLM/Qwen/blob/main/LICENSE)
 
-2. **中间层协议（DeepSeek-R1:14B-Qwen-Distill-Q4_K_M）**  
-   - 协议类型：MIT License  
-   - 版权归属：Copyright © 2023 DeepSeek  
-   - 核心要求：允许自由使用、修改与分发，需保留版权声明；  
-   - 官方协议文本：[https://github.com/deepseek-ai/DeepSeek-R1/blob/main/LICENSE](https://github.com/deepseek-ai/DeepSeek-R1/blob/main/LICENSE)
+1.  底层基础模型：Qwen3:14B-Q4_K_M
+    -   版权归属：Copyright (c) 2025 Alibaba Cloud
+    -   适用协议：Apache License 2.0
+    -   协议要求：任何基于此模型的修改、衍生或分发，都必须保留其原始的版权声明和协议文本。
+    -   协议获取：参见Qwen官方开源仓库 (https://github.com/QwenLM/Qwen3)
 
-3. **二次开发及整体协议**  
+2. **二次开发及整体协议**  
    - 协议类型：GNU Affero General Public License v3（AGPL v3）  
    - 版权归属：Copyright © 2025 HackerJohnSmith  
    - 核心义务：  
@@ -78,11 +73,13 @@ ollama run HackerJohnSmith/HackerAI-PC:1.0.1
 
 ## 九、版本更新日志
 ### v1.0.0（2025-08-24）
-- **大版本更新**：首次创建HackerAI-PC模型，完成基础框架搭建（含PC端场景适配逻辑与初始参数配置）
+- **版本更新**：首次创建HackerAI-PC模型，完成基础框架搭建（含PC端场景适配逻辑与初始参数配置）
 
 ### v1.0.1（2025-09-04）
-- **小版本更新**：修复协议追溯问题，补充Qwen2的Apache 2.0协议引用，完善三层协议完整性声明
+- **修复更新**：修复协议追溯问题，补充Qwen2的Apache 2.0协议引用，完善三层协议完整性声明
 
+### v1.0.1（2025-10-06）
+- **功能更新**：更换底层模型为Qwen3，持续优化模型潜力
 
 ## 十、后续规划
 后续将持续围绕「PC 端计算机科研需求」迭代优化，重点方向包括：
@@ -93,5 +90,5 @@ ollama run HackerJohnSmith/HackerAI-PC:1.0.1
 
 ## 免责声明
 1. 本模型所有输出内容仅作为科研参考素材，不构成决策建议、行动依据或专业指导；
-2. 使用者需结合具体场景独立判断与验证，模型开发者（HackerJohnSmith）及上游版权方（Alibaba Cloud、DeepSeek）不承担因使用本模型导致的任何直接或间接损失，相关使用风险由使用者自行承担；
-3. 若发现上游模型（Qwen2/DeepSeek-R1）协议存在更新或调整，建议使用者同步更新本地协议文档，确保合规性。
+2. 使用者需结合具体场景独立判断与验证，模型开发者（HackerJohnSmith）及上游版权方（Alibaba Cloud）不承担因使用本模型导致的任何直接或间接损失，相关使用风险由使用者自行承担；
+3. 若发现上游模型（Qwen3）协议存在更新或调整，建议使用者同步更新本地协议文档，确保合规性。
